@@ -1,44 +1,6 @@
-class Produto {
-  public idProduto: number;
-  public nome: string;
-  public preco: number;
-  constructor(id: number, nome: string, preco: number) {
-    this.idProduto = id;
-    this.nome = nome;
-    this.preco = preco;
-  }
-}
-
-class Fornecedor {
-  public idFornecedor: number;
-  public nome: string;
-  public nif: string;
-  public idProduto: number;
-
-  constructor(id: number, nome: string, nif: string, idProduto: number) {
-    this.idFornecedor = id;
-    this.nome = nome;
-    this.nif = nif;
-    this.idProduto = idProduto;
-  }
-}
-
-interface ListaProdutos {
-  idProduto: number;
-  qtd: number;
-}
-
-class Pedido {
-  public idPedido: number;
-  public listaProdutos: ListaProdutos[];
-  public nome: string;
-
-  constructor(id: number, listaProdutos: ListaProdutos[], nome: string) {
-    this.idPedido = id;
-    this.listaProdutos = listaProdutos;
-    this.nome = nome;
-  }
-}
+import {Produto} from "./Produto";
+import {Fornecedor} from "./Fornecedor";
+import {Pedido} from "./Pedido";
 
 const produtos: Produto[] = [
   new Produto(1, "Arroz", 22000),
