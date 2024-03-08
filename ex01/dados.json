@@ -1,0 +1,16 @@
+[
+  {
+    "idPedido": 1,
+    "listaProdutos": [
+      { "idProduto": 1, "qtd": 2 },
+      { "idProduto": 2, "qtd": 1 },
+      { "idProduto": 3, "qtd": 1 }
+    ],
+    "nome": "William"
+  },
+  {
+    "idPedido": 2,
+    "listaProdutos": [{ "idProduto": 1, "qtd": 2 }],
+    "nome": "Fernando Felix"
+  }
+]
