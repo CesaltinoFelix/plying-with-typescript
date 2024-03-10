@@ -8,5 +8,32 @@ class Aluno {
         this._idade = idade;
         this._matricula = matricula;
     }
+    get id() {
+        return this._id;
+    }
+    set id(value) {
+        this._id = value;
+    }
+    get nome() {
+        return this._nome;
+    }
+    set nome(value) {
+        this._nome = value;
+    }
+    get idade() {
+        return this._idade;
+    }
+    set idade(value) {
+        this._idade = value;
+    }
+    get matricula() {
+        return this._matricula;
+    }
+    set matricula(value) {
+        this._matricula = value;
+    }
+    toString() {
+        return `${this._id} - ${this._nome} - ${this._idade} - ${this._matricula}`;
+    }
 }
 exports.Aluno = Aluno;

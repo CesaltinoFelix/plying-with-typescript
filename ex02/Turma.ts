@@ -1,16 +1,16 @@
 import { Aluno } from "./Aluno";
 
 export class Turma{
-    private _id: number;
-    private _nome: string;
-    private _classe: number;
-    private _curso: string;
-    private _idAlunos: number[];
+    public id: number;
+    public nome: string;
+    public classe: number;
+    public curso: string;
+    public idAlunos: number[];
     constructor(id : number, nome: string, classe: number, curso: string, idAlunos: number[]){
-        this._id = id;
-        this._nome = nome;
-        this._classe = classe;
-        this._curso = curso;
-        this._idAlunos = idAlunos;
+        this.id = id;
+        this.nome = nome;
+        this.classe = classe;
+        this.curso = curso;
+        this.idAlunos = idAlunos;
     }
 }
