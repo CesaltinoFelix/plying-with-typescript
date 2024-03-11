@@ -30,7 +30,7 @@ function lerDados() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const dados = yield (0, promises_1.readFile)("./dados/dados.turma.json");
-            const turmas = JSON.parse(dados.toString());
+            const turmas = yield JSON.parse(dados.toString());
             return turmas;
         }
         catch (error) {
@@ -40,11 +40,21 @@ function lerDados() {
     });
 }
 function mostrarInformacao() {
-    let turmas = lerDados();
-    turmas.then((turmas) => {
+    return __awaiter(this, void 0, void 0, function* () {
+        const turmas = yield lerDados();
         turmas.forEach((turma) => {
             console.log("=======================================================");
-            console.log("ID: " + turma.id + " - " + "TURMA: " + turma.nome + " - " + "CLASSE: " + turma.classe + " - " + "CURSO: " + turma.curso);
+            console.log("ID: " +
+                turma.id +
+                " - " +
+                "TURMA: " +
+                turma.nome +
+                " - " +
+                "CLASSE: " +
+                turma.classe +
+                " - " +
+                "CURSO: " +
+                turma.curso);
             console.log("");
             console.log("           ALUNOS");
             turma.idAlunos.forEach((id) => {
@@ -70,25 +80,33 @@ function mostrarInformacao() {
         });
     });
 }
-// const dados = new Turma(2, 'M12A', 11, 'Mecanica', [5, 6, 7]);
-// salvarDados(dados).then(()=>{
-//     mostrarInformacao();
-// });
+const dados = new Turma_1.Turma(2, "M12A", 11, "Mecanica", [5, 6, 7]);
+salvarDados(dados).then(() => {
+    mostrarInformacao();
+});
 // const dados2 = new Turma(3, 'M12B', 11, 'Mecanica', [1, 2, 3]);
 function dadosForm() {
-    var _a, _b, _c, _d, _e;
-    const id = Number((_a = document.getElementById("id")) === null || _a === void 0 ? void 0 : _a.value);
-    const nome = (_b = document.getElementById("nome")) === null || _b === void 0 ? void 0 : _b.value;
-    const classe = Number((_c = document.getElementById("classe")) === null || _c === void 0 ? void 0 : _c.value);
-    const idAlunosForm = ((_d = document.getElementById("idAlunos")) === null || _d === void 0 ? void 0 : _d.value).split(',');
-    const curso = (_e = document.getElementById("curso")) === null || _e === void 0 ? void 0 : _e.value;
-    let idAlunos = [];
-    console.log(`${id} - ${nome} - ${classe} - ${idAlunos} - ${curso}`);
-    idAlunosForm.forEach((id) => {
-        idAlunos.push(parseInt(id));
+    return __awaiter(this, void 0, void 0, function* () {
+        var _a, _b, _c, _d, _e;
+        const id = Number((_a = document.getElementById("id")) === null || _a === void 0 ? void 0 : _a.value);
+        const nome = (_b = document.getElementById("nome")) === null || _b === void 0 ? void 0 : _b.value;
+        const classe = Number((_c = document.getElementById("classe")) === null || _c === void 0 ? void 0 : _c.value);
+        const idAlunosForm = ((_d = ((document.getElementById("idAlunos")))) === null || _d === void 0 ? void 0 : _d.value).split(",");
+        const curso = (_e = document.getElementById("curso")) === null || _e === void 0 ? void 0 : _e.value;
+        // Mapeia cada ID para uma Promessa que resolve quando a conversão é concluída
+        const promises = idAlunosForm.map((id) => parseInt(id, 10));
+        // Aguarda todas as Promessas concluírem usando Promise.all()
+        const idAlunos = yield Promise.all(promises);
+        console.log(`${id} - ${nome} - ${classe} - ${idAlunos} - ${curso}`);
+        let dados = {
+            id,
+            nome,
+            classe,
+            curso,
+            idAlunos,
+        };
+        yield salvarDados(dados);
+        console.clear();
+        mostrarInformacao();
     });
-    salvarDados(new Turma_1.Turma(id, nome, classe, curso, idAlunos));
-    console.clear();
-    mostrarInformacao();
 }
-mostrarInformacao();
